@@ -47,7 +47,7 @@ There are two options to do this:
 Then run:  
 `lager connect --device nrf52 --interface jlink --transport swd --speed 4000`  
 or if using built-in debug probe  
-`lager connect --device nrf52 --interfact ftdi --transport swd --speed 4000`  
+`lager connect --device nrf52 --interfact jlink --transport swd --speed 4000`  
   
 #### Flash Image
 To flash the board with the project application run the following:  
