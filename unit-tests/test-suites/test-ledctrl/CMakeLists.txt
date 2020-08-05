@@ -40,8 +40,8 @@ target_compile_options(test-ledctrl PRIVATE $<$<COMPILE_LANGUAGE:ASM>:-x assembl
 target_compile_options(test-ledctrl PRIVATE "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 
 target_compile_definitions(test-ledctrl PRIVATE FLOAT_ABI_HARD NRF52840_XXAA)
-target_compile_definitions(test-ledctrl PUBLIC $<$<COMPILE_LANGUAGE:C>:UNITY_INCLUDE_CONFIG_H>)
-target_compile_definitions(test-ledctrl PRIVATE $<$<COMPILE_LANGUAGE:ASM>:__HEAP_SIZE=8192 __STACK_SIZE=8192>)
+target_compile_definitions(test-ledctrl PUBLIC $<$<COMPILE_LANGUAGE:C>:UNITY_INCLUDE_CONFIG_H BOARD_PCA10056>)
+target_compile_definitions(test-ledctrl PRIVATE $<$<COMPILE_LANGUAGE:ASM>:__HEAP_SIZE=8192 __STACK_SIZE=8192 BOARD_PCA10056>)
 
 target_link_directories(test-ledctrl PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../../../linker)
 target_link_options(test-ledctrl PRIVATE -mcpu=cortex-m4 -mthumb -mabi=aapcs -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wl,--gc-sections -lc -lm -lnosys --specs=nano.specs -Tnrf52.ld)

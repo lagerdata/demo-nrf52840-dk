@@ -37,8 +37,8 @@ target_compile_options(test-example PRIVATE $<$<COMPILE_LANGUAGE:ASM>:-x assembl
 target_compile_options(test-example PRIVATE "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 
 target_compile_definitions(test-example PRIVATE FLOAT_ABI_HARD NRF52840_XXAA)
-target_compile_definitions(test-example PUBLIC $<$<COMPILE_LANGUAGE:C>:UNITY_INCLUDE_CONFIG_H>)
-target_compile_definitions(test-example PRIVATE $<$<COMPILE_LANGUAGE:ASM>:__HEAP_SIZE=8192 __STACK_SIZE=8192>)
+target_compile_definitions(test-example PUBLIC $<$<COMPILE_LANGUAGE:C>:UNITY_INCLUDE_CONFIG_H BOARD_PCA10056>)
+target_compile_definitions(test-example PRIVATE $<$<COMPILE_LANGUAGE:ASM>:__HEAP_SIZE=8192 __STACK_SIZE=8192 BOARD_PCA10056>)
 
 
 
