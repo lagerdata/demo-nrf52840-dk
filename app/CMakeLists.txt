@@ -29,7 +29,6 @@ target_compile_options(app PRIVATE $<$<COMPILE_LANGUAGE:ASM>:-x assembler-with-c
 target_compile_options(app PRIVATE "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 
 target_compile_definitions(app PRIVATE FLOAT_ABI_HARD NRF52840_XXAA)
-target_compile_definitions(app PUBLIC $<$<COMPILE_LANGUAGE:C>:UNITY_INCLUDE_CONFIG_H>)
 target_compile_definitions(app PRIVATE $<$<COMPILE_LANGUAGE:ASM>:__HEAP_SIZE=8192 __STACK_SIZE=8192>)
 
 

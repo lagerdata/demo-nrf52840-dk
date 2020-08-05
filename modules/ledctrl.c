@@ -33,7 +33,7 @@
 int32_t ledctrl_init(void)
 {
     nrf_gpio_cfg_output(LED_PIN);
-    nrf_gpio_pin_clear(LED_PIN);
+    nrf_gpio_pin_set(LED_PIN);
     return LEDCTRL_OK;
 }
 
@@ -57,12 +57,13 @@ int32_t ledctrl_blinkled(uint32_t num_blink, uint32_t ms_blink_duration)
 
 	for(int i=0;i<(num_blink);i++){
 		ledctrl_onoff(true);
-        nrf_delay_ms(ms_blink_duration);
+        //nrf_delay_ms(ms_blink_duration);
+        for(int j=0;j<100000;j++){};
 		ledctrl_onoff(false);
-        nrf_delay_ms(ms_blink_duration);
+        //nrf_delay_ms(ms_blink_duration);
+        for(int j=0;j<100000;j++){};
 
 	}
-
 
 	return LEDCTRL_OK;
 }
@@ -72,9 +73,9 @@ int32_t ledctrl_onoff(bool led_on)
 {
 
 	if(led_on){
-        nrf_gpio_pin_set(LED_PIN);
-	}else{
         nrf_gpio_pin_clear(LED_PIN);
+	}else{
+        nrf_gpio_pin_set(LED_PIN);
 	}
 
 	return LEDCTRL_OK;

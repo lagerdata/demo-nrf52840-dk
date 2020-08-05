@@ -25,5 +25,4 @@ target_compile_options(ledctrl PUBLIC "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 
 
 target_compile_definitions(ledctrl PRIVATE FLOAT_ABI_HARD NRF52840_XXAA)
-target_compile_definitions(ledctrl PRIVATE $<$<COMPILE_LANGUAGE:C>:FREERTOS>)
 target_compile_definitions(ledctrl PRIVATE $<$<COMPILE_LANGUAGE:ASM>:__HEAP_SIZE=8192 __STACK_SIZE=8192>)

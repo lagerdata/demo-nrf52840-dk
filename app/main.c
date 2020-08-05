@@ -26,10 +26,10 @@
 int main(void)
 {
     ledctrl_init();
-    ledctrl_blinkled(5, 2);
-    ledctrl_blinkled(4, 3);
-    ledctrl_blinkled(3, 4);
-    ledctrl_blinkled(2, 5);
+    ledctrl_blinkled(5, 250);
+    ledctrl_blinkled(4, 500);
+    ledctrl_blinkled(3, 1000);
+    ledctrl_blinkled(2, 2000);
 
     return 0;
 }
