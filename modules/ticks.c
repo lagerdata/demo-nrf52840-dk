@@ -1,7 +1,9 @@
-#define _MAIN_C_SRC
+#define _TICKS_C_SRC
 
 //-------------------------MODULES USED-------------------------------------
-#include "ledctrl.h"
+#include "system_nrf52840.h"
+#include "nrf52840.h"
+
 //-------------------------DEFINITIONS AND MACORS---------------------------
 
 
@@ -19,27 +21,32 @@
 
 
 //-------------------------GLOBAL VARIABLES---------------------------------
-
+static uint32_t g_ms_cnt;
 
 
 //-------------------------EXPORTED FUNCTIONS-------------------------------
-int main(void)
+void ticks_init(void)
 {
-    ledctrl_init();
-    while(1){
-        ledctrl_blinkled(9, 200);
-        ledctrl_blinkled(8, 400);
-        ledctrl_blinkled(6, 800);
-        ledctrl_blinkled(4, 1000);
-        ledctrl_blinkled(2, 2000);
-    }
+    g_ms_cnt = 0;
+    SysTick_Config(SystemCoreClock / 1000);
+    NVIC_EnableIRQ(SysTick_IRQn);
+}
 
-    return 0;
+void ticks_delay(uint32_t ms)
+{
+    uint32_t t = g_ms_cnt;
+    while((t+ms) > g_ms_cnt){};
+}
+
+uint32_t ticks_getCount(void)
+{
+    return g_ms_cnt;
+}
+
+void SysTick_Handler(void)
+{
+    g_ms_cnt++;
 }
 
 
 //-------------------------LOCAL FUNCTIONS----------------------------------
-void HardFault_Handler(void)
-{
-    while(1);
-}

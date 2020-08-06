@@ -34,6 +34,7 @@ target_compile_definitions(app PRIVATE $<$<COMPILE_LANGUAGE:ASM>:__HEAP_SIZE=819
 
 
 target_link_libraries(app ledctrl)
+target_link_libraries(app ticks)
 
 target_link_directories(app PRIVATE "${PROJECT_SOURCE_DIR}/linker")
 target_link_options(app PRIVATE -mcpu=cortex-m4 -mthumb -mabi=aapcs -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wl,--gc-sections -lc -lm -lnosys --specs=nano.specs -Tnrf52.ld)

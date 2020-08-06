@@ -47,7 +47,7 @@ There are two options to do this:
 Then run:  
 `lager connect --device nrf52 --interface jlink --transport swd --speed 4000`  
 or if using built-in debug probe  
-`lager connect --device nrf52 --interfact jlink --transport swd --speed 4000`  
+`lager connect --device nrf52 --interfact ftdi --transport swd --speed 4000`  
   
 #### Flash Image
 To flash the board with the project application run the following:  
@@ -55,8 +55,11 @@ To flash the board with the project application run the following:
 
 ## Unit Tests
 To run an example unit-test for this project run the following:  
-`lager testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-example/test-example.hex`  
+`lager testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-example/test-example.hex  --test-runner unity`  
 The results of the individual tests will be streamed back to the terminal.  
+*Note: To view available serial devices that can be used run `lager gateway serial-ports`  
+/dev/ttyS0 is the built-in gateway serial port that is accessible via a 20 pin header on the Gateway.  
+Other potential usable serial ports is determined on the types of USB devices plugged into the Gateway.*  
   
 ## Drone Setup
 To test Drone integration firs make sure the demo repository is forked, then go to drone.app.lagerdata.com and 'Activate' the repository.  

@@ -32,7 +32,7 @@ target_include_directories(test-example PUBLIC ${NRF52_SRC_DIR}/modules/nrfx
 target_include_directories(test-example PUBLIC ${NRF52_SRC_DIR}/components/toolchain/cmsis/include)
 
 target_compile_options(test-example PRIVATE -mcpu=cortex-m7 -mthumb -mabi=aapcs -mfloat-abi=hard -mfpu=fpv5-sp-d16)
-target_compile_options(test-example PRIVATE $<$<COMPILE_LANGUAGE:C>:-Wall -Werror -g -gstrict-dwarf -ffunction-sections -fdata-sections -fno-strict-aliasing -fno-builtin -fshort-enums>)
+target_compile_options(test-example PRIVATE $<$<COMPILE_LANGUAGE:C>:-Wall -Werror -g3 -O3 -gstrict-dwarf -ffunction-sections -fdata-sections -fno-strict-aliasing -fno-builtin -fshort-enums>)
 target_compile_options(test-example PRIVATE $<$<COMPILE_LANGUAGE:ASM>:-x assembler-with-cpp>)
 target_compile_options(test-example PRIVATE "-ffile-prefix-map=${CMAKE_SOURCE_DIR}=.")
 

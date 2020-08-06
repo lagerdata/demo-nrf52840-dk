@@ -2,7 +2,7 @@
 
 //-------------------------MODULES USED-------------------------------------
 #include "nrf_gpio.h"
-#include "nrf_delay.h"
+#include "ticks.h"
 #include "ledctrl.h"
 
 
@@ -34,6 +34,8 @@ int32_t ledctrl_init(void)
 {
     nrf_gpio_cfg_output(LED_PIN);
     nrf_gpio_pin_set(LED_PIN);
+    ticks_init();
+
     return LEDCTRL_OK;
 }
 
@@ -54,15 +56,11 @@ int32_t ledctrl_blinkled(uint32_t num_blink, uint32_t ms_blink_duration)
 	ms_blink_duration /=2;
 
 	ledctrl_onoff(false);
-
 	for(int i=0;i<(num_blink);i++){
 		ledctrl_onoff(true);
-        //nrf_delay_ms(ms_blink_duration);
-        for(int j=0;j<100000;j++){};
+        ticks_delay(ms_blink_duration);
 		ledctrl_onoff(false);
-        //nrf_delay_ms(ms_blink_duration);
-        for(int j=0;j<100000;j++){};
-
+        ticks_delay(ms_blink_duration);
 	}
 
 	return LEDCTRL_OK;
