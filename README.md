@@ -26,8 +26,8 @@ If you would like to create a development environment from scratch do the follow
 This will instruct users to choose a development environment image (e.g. cortex-m, stm32, ti, etc), where to mount their project in the docker container, and what shell type to use. For this project the default settings are OK.  
 *Note: Search "lagerdata" on hub.docker.com to view other development environments supported by Lager*  
   
-To create a new build command run:  
-`lager exec --command "user defined build command" --save-as user-defined-shortcut `  
+To create a new custom command run:  
+`lager exec --command "user defined command" --save-as user-defined-shortcut `  
 
 For example, to build this project using CMake + Ninja a user can define the following:  
 `lager exec --command "mkdir -p _build;cd _build; cmake .. -G Ninja -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-gcc-toolchain.cmake;cmake --build ." --save-as my_build_cmd`  
