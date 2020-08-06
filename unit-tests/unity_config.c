@@ -30,6 +30,7 @@ void target_putc(char a)
 {
     nrf_uart_txd_set(TARGET_UART, a);
     while(!nrf_uart_event_check(TARGET_UART, NRF_UART_EVENT_TXDRDY));
+    NRF_UART0->EVENTS_TXDRDY = 0;
 }
 
 void target_init_putc(void)

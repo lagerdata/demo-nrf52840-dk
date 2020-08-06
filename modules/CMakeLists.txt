@@ -12,7 +12,7 @@ target_include_directories(ledctrl PUBLIC ${NRF52_SRC_DIR}/modules/nrfx
   ${NRF52_SRC_DIR}/modules/nrfx/drivers/src
   ${NRF52_SRC_DIR}/modules/nrfx/drivers/src/prs
   ${NRF52_SRC_DIR}/modules/nrfx/templates
-  ${NRF52_SRC_DIR}/modules/nrfx/templates/NRF52840
+  ${NRF52_SRC_DIR}/modules/nrfx/templates/nRF52840
   ${NRF52_SRC_DIR}/modules/nrfx/helpers)
 
 target_include_directories(ledctrl PUBLIC ${NRF52_SRC_DIR}/components/toolchain/cmsis/include

@@ -26,7 +26,7 @@ target_include_directories(test-ledctrl PUBLIC ${NRF52_SRC_DIR}/modules/nrfx
   ${NRF52_SRC_DIR}/modules/nrfx/drivers/src
   ${NRF52_SRC_DIR}/modules/nrfx/drivers/src/prs
   ${NRF52_SRC_DIR}/modules/nrfx/templates
-  ${NRF52_SRC_DIR}/modules/nrfx/templates/NRF52840
+  ${NRF52_SRC_DIR}/modules/nrfx/templates/nRF52840
   ${NRF52_SRC_DIR}/modules/nrfx/helpers
   ${NRF52_SRC_DIR}/components/libraries/delay)
 
