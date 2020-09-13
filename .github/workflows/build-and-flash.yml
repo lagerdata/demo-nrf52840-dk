@@ -30,4 +30,4 @@ jobs:
           LAGER_SECRET_TOKEN: ${{ secrets.LAGER_SECRET_TOKEN }}
         with:
           entrypoint: lager
-          args: testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-example/test-example --hexfile third_party/nRF5_SDK_17.0.0_9d13099/components/softdevice/s140/hex/s140_nrf52_7.0.1_softdevice.hex --gateway majestic-moose
+          args: testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-example/test-example --gateway majestic-moose
