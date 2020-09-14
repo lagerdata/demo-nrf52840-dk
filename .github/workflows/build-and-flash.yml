@@ -16,7 +16,7 @@ jobs:
           entrypoint: lager
           args: exec build
 
-      - name: Connect moose
+      - name: Connect horse
         uses: docker://lagerdata/lager-cli:v0.1.33
         env:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
@@ -24,7 +24,7 @@ jobs:
           entrypoint: lager
           args: connect --device nrf52 --interface ftdi --transport swd --gateway helpful-horse --force
 
-      - name: Testrun moose
+      - name: Testrun horse
         uses: docker://lagerdata/lager-cli:v0.1.33
         env:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
