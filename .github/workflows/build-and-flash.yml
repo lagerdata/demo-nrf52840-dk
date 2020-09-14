@@ -24,11 +24,18 @@ jobs:
           entrypoint: lager
           args: connect --device nrf52 --interface ftdi --transport swd --gateway helpful-horse --force
 
-      - name: Testrun horse
+      - name: Testrun example horse
         uses: docker://lagerdata/lager-cli:v0.1.33
         env:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
           entrypoint: lager
           args: testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-example/test-example.hex --gateway helpful-horse
+
+      - name: Testrun ledctrl horse
+        uses: docker://lagerdata/lager-cli:v0.1.33
+        env:
+          LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
+        with:
+          entrypoint: lager
           args: testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-ledctrl/test-ledctrl.hex --gateway helpful-horse
