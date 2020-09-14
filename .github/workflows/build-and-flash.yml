@@ -31,3 +31,4 @@ jobs:
         with:
           entrypoint: lager
           args: testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-example/test-example.hex --gateway helpful-horse
+          args: testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-ledctrl/test-ledctrl.hex --gateway helpful-horse
