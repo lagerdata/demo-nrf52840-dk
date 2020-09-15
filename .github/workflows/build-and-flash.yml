@@ -1,9 +1,11 @@
 name: Run tests
 on: [push]
+env:
+  LAGER_GATEWAY: helpful-horse
 
 jobs:
-  build_and_flash:
-    name: Build and Flash
+  build:
+    name: Build firmware
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,23 +13,38 @@ jobs:
           submodules: 'recursive'
 
       - name: Build
-        uses: docker://lagerdata/devenv-cortexm@sha256:6a08db6ce3143ed312a46ea4bcf8054d6ab97705687eb1b98f2df095a1f807d7
+        uses: docker://lagerdata/devenv-cortexm@sha256:2742d3fc1d3794d84afbe5aee79a1854a9079a2468d26d083f5d67c98435db3a
         with:
           entrypoint: lager
           args: exec build
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: hexfile
+          path: _build/unit-tests/test-suites/test-example/test-example.hex
+
+  flash:
+    name: Flash gateway and run tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Connect horse
-        uses: docker://lagerdata/lager-cli:v0.1.33
+        uses: docker://lagerdata/lager-cli:v0.1.34
         env:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
           entrypoint: lager
-          args: connect --device nrf52 --interface ftdi --transport swd --gateway helpful-horse --force
+          args: connect --device nrf52 --interface ftdi --transport swd --force
+
+      - uses: actions/download-artifact@v2
+        id: download_hex
+        with:
+          name: hexfile
 
       - name: Testrun horse
-        uses: docker://lagerdata/lager-cli:v0.1.33
+        uses: docker://lagerdata/lager-cli:v0.1.34
         env:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
-          entrypoint: lager
-          args: testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-example/test-example --gateway helpful-horse
+          entrypoint: /bin/bash
+          args: -c "/usr/local/bin/lager testrun --serial-device /dev/ttyACM0 --hexfile $GITHUB_WORKSPACE/test-example.hex"
