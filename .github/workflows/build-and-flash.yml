@@ -1,7 +1,7 @@
 name: Run tests
 on: [push]
 env:
-  LAGER_GATEWAY_MAP: '{"akbardhanaliwala": "helpful-horse", "ehaas": "majestic-moose"}'
+  LAGER_GATEWAY_MAP: '{"adhanali": "helpful-horse", "ehaas": "majestic-moose"}'
 
 jobs:
   build:
