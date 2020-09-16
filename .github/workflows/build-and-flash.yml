@@ -9,10 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo $GITHUB_EVENT_PATH
+      - run: cp $GITHUB_EVENT_PATH $GITHUB_WORKSPACE
       - uses: docker://stedolan/jq
         with:
           entrypoint: /bin/bash
-          args: -c "/usr/local/bin/jq -r .pusher.name" < $GITHUB_EVENT_PATH
+          args: -c "/usr/local/bin/jq -r .pusher.name < $GITHUB_WORKSPACE/event.json"
   #     - uses: actions/checkout@v2
   #       with:
   #         submodules: 'recursive'
