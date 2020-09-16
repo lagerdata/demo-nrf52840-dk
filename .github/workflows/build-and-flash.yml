@@ -37,7 +37,6 @@ jobs:
           args: -c "exec /usr/local/bin/lager connect --device nrf52 --interface ftdi --transport swd --force"
 
       - uses: actions/download-artifact@v2
-        id: download_hex
         with:
           name: hexfile
 
