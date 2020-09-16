@@ -21,7 +21,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: hexfile
-          path: _build/unit-tests/test-suites/test-example/test-example.hex
+          path: _build/unit-tests/test-suites/test-ledctrl/test-ledctrl.hex
 
   flash:
     name: Flash gateway and run tests
@@ -54,4 +54,4 @@ jobs:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
           entrypoint: /bin/bash
-          args: -c "exec /usr/local/bin/lager testrun --serial-device /dev/ttyACM0 --hexfile $GITHUB_WORKSPACE/test-example.hex"
+          args: -c "exec /usr/local/bin/lager testrun --serial-device /dev/ttyACM0 --hexfile $GITHUB_WORKSPACE/test-ledctrl.hex"
