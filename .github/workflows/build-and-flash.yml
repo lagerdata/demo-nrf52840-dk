@@ -17,7 +17,7 @@ jobs:
           entrypoint: /bin/bash
           args: -c "echo ::set-env name=LAGER_GATEWAY::$(echo $LAGER_GATEWAY_MAP | /usr/local/bin/jq -r .$(/bin/bash -c '/usr/local/bin/jq -r .pusher.name < $GITHUB_WORKSPACE/$(basename $GITHUB_EVENT_PATH)'))"
           # args: -c "/usr/local/bin/jq -r .pusher.name < $GITHUB_WORKSPACE/$(basename $GITHUB_EVENT_PATH)"
-
+      - run: echo $LAGER_GATEWAY
   #     - uses: actions/checkout@v2
   #       with:
   #         submodules: 'recursive'
