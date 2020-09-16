@@ -15,8 +15,8 @@ jobs:
       - name: Build
         uses: docker://lagerdata/devenv-cortexm@sha256:2742d3fc1d3794d84afbe5aee79a1854a9079a2468d26d083f5d67c98435db3a
         with:
-          entrypoint: lager
-          args: exec build
+          entrypoint: /bin/bash
+          args: -c "exec /usr/local/bin/lager exec build"
 
       - uses: actions/upload-artifact@v2
         with:
@@ -33,8 +33,8 @@ jobs:
         env:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
-          entrypoint: lager
-          args: connect --device nrf52 --interface ftdi --transport swd --force
+          entrypoint: /bin/bash
+          args: -c "exec /usr/local/bin/lager connect --device nrf52 --interface ftdi --transport swd --force"
 
       - uses: actions/download-artifact@v2
         id: download_hex
