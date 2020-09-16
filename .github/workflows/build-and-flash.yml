@@ -13,7 +13,7 @@ jobs:
       - uses: docker://stedolan/jq
         with:
           entrypoint: /bin/bash
-          args: -c "/usr/local/bin/jq -r .pusher.name < $GITHUB_WORKSPACE/event.json"
+          args: -c "/usr/local/bin/jq -r .pusher.name < $GITHUB_WORKSPACE/$(basename $GITHUB_EVENT_PATH)"
   #     - uses: actions/checkout@v2
   #       with:
   #         submodules: 'recursive'
