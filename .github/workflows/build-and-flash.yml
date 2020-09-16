@@ -15,7 +15,7 @@ jobs:
       - uses: docker://stedolan/jq
         with:
           entrypoint: /bin/bash
-          args: -c "echo $LAGER_GATEWAY_MAP | /usr/local/bin/jq -r .ehaas"
+          args: -c "echo $LAGER_GATEWAY_MAP | /usr/local/bin/jq -r .$(/usr/local/bin/jq -r .pusher.name < $GITHUB_WORKSPACE/$(basename $GITHUB_EVENT_PATH))"
           # args: -c "/usr/local/bin/jq -r .pusher.name < $GITHUB_WORKSPACE/$(basename $GITHUB_EVENT_PATH)"
 
   #     - uses: actions/checkout@v2
