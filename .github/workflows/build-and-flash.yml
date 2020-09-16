@@ -3,7 +3,7 @@ on: [push]
 env:
   # LAGER_GATEWAY: helpful-horse
   # ::set-env name=LAGER_GATEWAY::{value}
-  LAGER_GATEWAY_MAP: {"akbardhanaliwala": "helpful-horse", "ehaas": "majestic-moose"}
+  LAGER_GATEWAY_MAP: '{"akbardhanaliwala": "helpful-horse", "ehaas": "majestic-moose"}'
 
 jobs:
   build:
