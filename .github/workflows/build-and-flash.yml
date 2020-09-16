@@ -33,27 +33,28 @@ jobs:
   #         name: hexfile
   #         path: _build/unit-tests/test-suites/test-example/test-example.hex
 
-  # flash:
-  #   name: Flash gateway and run tests
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #     - name: Connect ${{ env.LAGER_GATEWAY }}
-  #       uses: docker://lagerdata/lager-cli:v0.1.34
-  #       env:
-  #         LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
-  #       with:
-  #         entrypoint: /bin/bash
-  #         args: -c "exec /usr/local/bin/lager connect --device nrf52 --interface ftdi --transport swd --force"
+  flash:
+    name: Flash gateway and run tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - run: echo $LAGER_GATEWAY
+      # - name: Connect ${{ env.LAGER_GATEWAY }}
+      #   uses: docker://lagerdata/lager-cli:v0.1.34
+      #   env:
+      #     LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
+      #   with:
+      #     entrypoint: /bin/bash
+      #     args: -c "exec /usr/local/bin/lager connect --device nrf52 --interface ftdi --transport swd --force"
 
-  #     - uses: actions/download-artifact@v2
-  #       with:
-  #         name: hexfile
+      # - uses: actions/download-artifact@v2
+      #   with:
+      #     name: hexfile
 
-  #     - name: Testrun ${{ env.LAGER_GATEWAY }}
-  #       uses: docker://lagerdata/lager-cli:v0.1.34
-  #       env:
-  #         LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
-  #       with:
-  #         entrypoint: /bin/bash
-  #         args: -c "exec /usr/local/bin/lager testrun --serial-device /dev/ttyACM0 --hexfile $GITHUB_WORKSPACE/test-example.hex"
+      # - name: Testrun ${{ env.LAGER_GATEWAY }}
+      #   uses: docker://lagerdata/lager-cli:v0.1.34
+      #   env:
+      #     LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
+      #   with:
+      #     entrypoint: /bin/bash
+      #     args: -c "exec /usr/local/bin/lager testrun --serial-device /dev/ttyACM0 --hexfile $GITHUB_WORKSPACE/test-example.hex"
