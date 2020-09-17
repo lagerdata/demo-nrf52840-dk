@@ -5,7 +5,6 @@ env:
 
 jobs:
   build_flash_and_run:
-    name: Build firmware
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
