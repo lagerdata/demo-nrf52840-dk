@@ -35,7 +35,7 @@ For example, to build this project using CMake + Ninja a user can define the fol
 `lager exec --command "mkdir -p _build;cd _build; cmake .. -G Ninja -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-gcc-toolchain.cmake;cmake --build ." --save-as my_build_cmd`  
 Moving forward a user could then run `lager exec my_build_cmd`  
 Similarly to create a "clean" command a user could do:  
-`lager exec --command "rm -rf _build" --save-as my_clean_cmd`  
+`lager exec --command "cd _build;ninja -t clean" --save-as my_clean_cmd`  
 and run it as `lager exec my_clean_cmd`  
 
 
