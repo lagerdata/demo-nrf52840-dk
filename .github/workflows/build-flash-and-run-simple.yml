@@ -17,6 +17,11 @@ jobs:
           entrypoint: /usr/local/bin/lager
           args: exec build
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: test-example.hex
+          path: _build/unit-tests/test-suites/test-example/test-example.hex
+
       - name: Connect to debugger
         uses: docker://lagerdata/lager-cli:v0.1.36
         env:
@@ -31,4 +36,4 @@ jobs:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
           entrypoint: /usr/local/bin/lager
-          args: testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-ledctrl/test-ledctrl.hex
+          args: testrun --serial-device /dev/ttyACM0 --hexfile _build/unit-tests/test-suites/test-example/test-example.hex
