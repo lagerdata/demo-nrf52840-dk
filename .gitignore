@@ -54,3 +54,5 @@ dkms.conf
 
 _build
 .DS_STORE
+
+venv
