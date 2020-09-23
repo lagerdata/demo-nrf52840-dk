@@ -108,7 +108,7 @@ endif
 
 
 # Assembler flags common to all targets
-ASMFLAGS += -g3
+ASMFLAGS += -x assembler-with-cpp
 ASMFLAGS += -mcpu=cortex-m4
 ASMFLAGS += -mthumb -mabi=aapcs
 ASMFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
@@ -130,40 +130,20 @@ CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
 CFLAGS += -fno-builtin -fshort-enums
 CFLAGS += -ffile-prefix-map=\app=.
-CFLAGS += -D__HEAP_SIZE=8192
-CFLAGS += -D__STACK_SIZE=8192
 
 
 
-# Release Configuration
-#
-ifeq (rel, $(CONF))
 
-BIN_DIR := _rel
-ASMFLAGS += -O3
-CFLAGS += -DNDEBUG
-CFLAGS += -Wall -Werror -O3
-
-# C++ flags common to all targets
-CXXFLAGS +=
-
-
-#
-# Default Debug Configuration
-#
-else
 
 BIN_DIR := _dbg
-ASMFLAGS += -g -O0
-CFLAGS += -Wall -Werror -g -Og -gstrict-dwarf
-CFLAGS += -DDEBUG
-CFLAGS += -DDEBUG_NRF
+ASMFLAGS += -g
+CFLAGS += -Wall -Werror -g -gstrict-dwarf
+
 
 # C++ flags common to all targets
 CXXFLAGS +=
 
 
-endif
 
 DEP_DIR := $(BIN_DIR)/.d
 #---------------------------------------------------
