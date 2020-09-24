@@ -4,8 +4,6 @@
 image = lagerdata/devenv-cortexm
 mount_dir = /app
 shell = /bin/bash
-cmd.build = mkdir -p _build;cd _build; cmake .. -G Ninja;cmake --build .
-cmd.clean = cd _build;ninja -t clean
-cmd.make-clean = make clean
 cmd.make = make
+cmd.clean = make clean
 
