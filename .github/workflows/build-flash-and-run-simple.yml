@@ -13,6 +13,7 @@ jobs:
         uses: docker://lagerdata/lager-cli:v0.1.37
         env:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
+          API_PASSWORD: ${{ secrets.API_PASSWORD }}
         with:
           entrypoint: /usr/local/bin/lager
-          args: python python_tests/tester.py
+          args: python --passenv API_PASSWORD python_tests/tester.py

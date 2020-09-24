@@ -1,25 +1,26 @@
 import sys
-import pytest
 from lager import lager
 import serial
+import requests
+import uuid
+import os
 
-def test_good_serial_output():
+def main():
     gateway = lager.Lager()
     device = gateway.connect("nrf52", ignore_if_connected=True)
     with serial.Serial('/dev/ttyACM0', 115200, timeout=2) as ser:
         device.reset(halt=False)
-        output = ser.read(512)
+        output = ser.read(512).decode()
 
-    assert b'test_check_min_number_blinks' in output
+    username = 'lager'
+    password = os.environ['API_PASSWORD']
+    api_base = 'https://inspector.fkops.net/receive'
+    request_id = str(uuid.uuid4()).upper()
+    api_url = f'{api_base}/{request_id}'
 
-def test_bad_serial_output():
-    gateway = lager.Lager()
-    device = gateway.connect("nrf52", ignore_if_connected=True)
-    with serial.Serial('/dev/ttyACM0', 115200, timeout=2) as ser:
-        device.reset(halt=False)
-        output = ser.read(512)
-
-    assert b'test_not_check_min_number_blinks' in output
+    response = requests.post(api_url, json={'hello': 'world', 'output': output}, auth=(username, password))
+    response.raise_for_status()
+    print(f'Success! review results at https://inspector.fkops.net/review/{request_id}')
 
 if __name__ == '__main__':
-   sys.exit(pytest.main([__file__]))
+    main()
