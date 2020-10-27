@@ -1,4 +1,3 @@
-{
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
@@ -8,13 +7,13 @@
             "name": "(arm-none-eabi-gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "miDebuggerPath": [ABSOLUTLE PATH/TO/DEBUGGER (WINDOWS ONLY)], // e.g. C:\\Program Files\\arm-none-eabi-gcc\\bin\\arm-none-eabi-gdb.exe"
+            "miDebuggerPath": #ABSOLUTLE/PATH/TO/DEBUGGER#, // e.g. C:\\Program Files\\arm-none-eabi-gcc\\bin\\arm-none-eabi-gdb.exe"
             "targetArchitecture": "arm",
-            "program": "${workspaceFolder}/_build/app/app",
+            "program": #PATH/TO/IMAGE/FILE(relative path ok)#, //e.g. "${workspaceFolder}/_build/app/app",
             "setupCommands": [
                 {"text": "target remote localhost:3333"},
                 {"text": "monitor reset halt"},
-                {"text": [SELECT ABSOLUTE PATH TO FILE(WINDOWS ONLY)], //e.g. "file Y:/Projects/demo-nrf52840-dk/_build/app/app"},
+                {"text": #file ABSOLUTE/PATH/TO/FILE#, //e.g. "file Y:/Projects/demo-nrf52840-dk/_build/app/app"}
                 {"text": "load"},
                 {"text": "break main","ignoreFailures": true},
             ],
