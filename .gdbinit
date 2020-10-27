@@ -34,3 +34,4 @@ set breakpoint pending on
 
 load
 break main
+continue
