@@ -12,5 +12,5 @@ jobs:
         env:
           LAGER_SECRET_KEY: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
-          entrypoint: /usr/local/bin/lager
-          args: exec cmake-build
+          entrypoint: /usr/bin/ls
+          args: -la
