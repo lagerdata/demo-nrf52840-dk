@@ -1,8 +1,8 @@
 [LAGER]
 
 [DEVENV]
-image = lagerdata/devenv-cortexm
-mount_dir = /app
+image = lagerdata/devenv-cortexm-minimal
+mount_dir = /github/workspace
 shell = /bin/bash
 cmd.make = make
 cmd.clean = make clean
