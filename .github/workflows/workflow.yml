@@ -14,8 +14,15 @@ jobs:
 
       - name: Build the code
         uses: docker://lagerdata/devenv-cortexm-minimal
+        with:
+          entrypoint: /usr/local/bin/lager
+          args: exec cmake-build
+
+      - name: Connect to gateway
+        uses: docker://lagerdata/lager-cli
         env:
           LAGER_SECRET_KEY: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
           entrypoint: /usr/local/bin/lager
-          args: exec cmake-build
+          args: connect --device nrf52 --force
+          
