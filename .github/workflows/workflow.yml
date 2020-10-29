@@ -1,0 +1,16 @@
+name: This is my sample workflow
+on: [push]
+env:
+  LAGER_GATEWAY: helpful-horse
+
+jobs:
+  build_and_run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build the code
+        uses: docker://lagerdata/devenv-cortexm-minimal
+        env:
+          LAGER_SECRET_KEY: ${{ secrets.AKBAR_SECRET_TOKEN }}
+        with:
+          entrypoint: /usr/local/bin/lager
+          args: exec cmake-build
