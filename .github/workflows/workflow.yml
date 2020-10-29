@@ -18,6 +18,12 @@ jobs:
           entrypoint: /usr/local/bin/lager
           args: exec cmake-build
 
+      - name: Upload the hexfile
+        uses: actions/upload-artifact@v2
+        with:
+          name: hexfile
+          path: _build/unit-tests/test-suites/test-example/test-example.hex
+
   connect:
     runs-on: ubuntu-latest
     steps:    
@@ -33,10 +39,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, connect]
     steps:    
+      - name: Download the hexfile
+        uses: actions/download-artifact@v2
+        with:
+          name: hexfile
+
       - name: Perform a testrun
         uses: docker://lagerdata/lager-cli
         env:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
           entrypoint: /usr/local/bin/lager
-          args: testrun --hexfile _build/unit-tests/test-suites/test-example/test-example.hex --serial-device /dev/ttyACM0
+          args: testrun --hexfile $GITHUB_WORKSPACE/test-example.hex --serial-device /dev/ttyACM0
