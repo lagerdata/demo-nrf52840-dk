@@ -49,5 +49,5 @@ jobs:
         env:
           LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
-          entrypoint: /usr/local/bin/lager
-          args: "testrun --hexfile $GITHUB_WORKSPACE/test-example.hex --serial-device /dev/ttyACM0"
+          entrypoint: /bin/bash
+          args: -c "exec /usr/local/bin/lager testrun --hexfile $GITHUB_WORKSPACE/test-example.hex --serial-device /dev/ttyACM0"
