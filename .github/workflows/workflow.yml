@@ -21,8 +21,15 @@ jobs:
       - name: Connect to gateway
         uses: docker://lagerdata/lager-cli
         env:
-          LAGER_SECRET_KEY: ${{ secrets.AKBAR_SECRET_TOKEN }}
+          LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
         with:
           entrypoint: /usr/local/bin/lager
           args: connect --device nrf52 --force
-          
+
+      - name: Perform a testrun
+        uses: docker://lagerdata/lager-cli
+        env:
+          LAGER_SECRET_TOKEN: ${{ secrets.AKBAR_SECRET_TOKEN }}
+        with:
+          entrypoint: /usr/local/bin/lager
+          args: testrun --hexfile _build/unit-tests/test-suites/test-example/test-example.hex --serial-device /dev/ttyACM0
